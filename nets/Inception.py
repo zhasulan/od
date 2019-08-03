@@ -1,11 +1,10 @@
-# import keras
-#
-#
-# class InceptionBackbone():
-#     """
-#     Inception backbone utility function
-#     """
-#
-#     def ___init__(self, backbone):
-#
-#     def
+from nets import Backbone
+
+
+class InceptionBackbone(Backbone):
+    """
+    Inception backbone utility function
+    """
+
+    def __init__(self, backbone, number_of_classes):
+        None

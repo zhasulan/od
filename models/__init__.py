@@ -40,8 +40,7 @@ class BaseClassifier(object):
         return self.__model.evaluate(test_X, test_Y)
 
     def predict(self, x):
-        predictions = self.__model.predict(x)
-        return predictions
+        return self.__model.predict(x)
 
     def save_model(self, file_path):
         self.__model.save(file_path)

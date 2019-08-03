@@ -13,21 +13,22 @@ def main(args):
     if args.backbone.find('ResNet') > -1:
         backbone = ResNet(args.number_of_classes)
 
-    clf = BaseClassifier(backbone, None, None)
-
-    if args.method == 'YOLOv1':
-        clf = YOLOv1.Classifier(backbone)
-
-    elif args.method == 'FasterRCNN':
-        clf = FasterRCNN.Classifier(backbone)
-
+    if args.model == 'YOLOv1':
+        from models.YOLOv1 import Classifier as Classifier 
+    elif args.model == 'FasterRCNN':
+        from models.FasterRCNN import Classifier as Classifier
+    else:
+        print('Not a valid model')
+        raise ValueError
+        
+    clf = Classifier(backbone)
     clf.fit(X, Y)
 
 
 def parse_arguments(argv):
     parser = argparse.ArgumentParser()
 
-    parser.add_argument('method', type=str, choices=['YOLOv1', 'FasterRCNN'],
+    parser.add_argument('model', type=str, choices=['YOLOv1', 'FasterRCNN'],
                         help='Choice one of methods for object detection')
 
     parser.add_argument('backbone', type=str)
