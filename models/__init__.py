@@ -1,6 +1,6 @@
 import time
 
-from keras import optimizers
+from keras.losses import categorical_crossentropy
 
 
 class BaseClassifier(object):
@@ -8,7 +8,7 @@ class BaseClassifier(object):
     def __init__(self, backbone, loss, optimizer):
         # Implement model
         self.__model = backbone
-        self.__loss = loss
+        self.__loss = categorical_crossentropy
         self.__optimizer = optimizer
 
         self.__model.compile(

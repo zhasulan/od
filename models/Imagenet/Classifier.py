@@ -25,7 +25,8 @@ class Classifier(BaseClassifier):
 
 
 if __name__ == '__main__':
-    clf = Classifier('resnet101V2', 1000)
+    clf = Classifier('DenseNet121', 1000)
+    print(clf.get_model().summary())
 
     filename = '../../images/cat.jpg'
     # load an image in PIL format
@@ -58,7 +59,7 @@ if __name__ == '__main__':
 
     # convert the probabilities to class labels
     # We will get top 5 predictions which is the default
-    label = decode_predictions(predictions)[0][0]
+    label = decode_predictions(predictions)
     print(label)
 
     # print(clf.get_model().summary())
