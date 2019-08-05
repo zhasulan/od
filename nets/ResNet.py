@@ -6,7 +6,7 @@ class ResNetBackbone(Backbone):
     ResNet backbone utility function
     """
 
-    def __init__(self, backbone, number_of_classes):
+    def __init__(self, backbone, classes):
 
         if backbone.find('NASNet') > -1:
             depth = backbone.replace('NASNet', '')
@@ -93,7 +93,7 @@ class ResNetBackbone(Backbone):
             print('Not a valid net')
             raise ValueError
 
-        super(ResNetBackbone, self).__init__(NN, number_of_classes)
+        super(ResNetBackbone, self).__init__(NN, classes)
 
 
 if __name__ == '__main__':

@@ -1,31 +1,32 @@
-import keras
-from keras_applications.resnet_common import ResNet152, ResNet101
+from keras import Model
+from keras.activations import linear
+from keras.layers import Dense, Flatten, GlobalAveragePooling2D
 
 from models import BaseClassifier
+from nets.ResNet import ResNetBackbone
 
 
 class Classifier(BaseClassifier):
 
-    def __init__(self, number_of_classes):
+    def __init__(self, backbone, classes):
         self.__loss = 'binary_crossentropy'
         self.__optimizer = 'adam'
 
-        self.__model = ResNet152(
-            include_top=True
-            , weights=None #'imagenet'
-            , input_tensor=None
-            , input_shape=None
-            , pooling=None
-            , classes=number_of_classes
+        backbone = ResNetBackbone(backbone, classes)
 
-            , backend=keras.backend
-            , layers=keras.layers
-            , models=keras.models
-            , utils=keras.utils
-        )
-        super(Classifier, self).__init__(self.__model, self.__loss, self.__optimizer)
+        super(Classifier, self).__init__(backbone.get_model(), self.__loss, self.__optimizer)
+
+    def train(self, classes):
+        x = self.get_model().output
+
+        x = GlobalAveragePooling2D(name='avg_pool')(x)
+        x = Dense(classes, activation='softmax', name='probs')(x)
+        model = Model(self.get_model().input, x)
+
+        self.set_model(model)
 
 
 if __name__ == '__main__':
-    clf = Classifier(1000)
+    clf = Classifier('resnet50', 1000)
+    clf.train(1000)
     print(clf.get_model().summary())

@@ -3,15 +3,15 @@ import keras
 
 class Backbone(object):
 
-    def __init__(self, NN, number_of_classes):
+    def __init__(self, NN, classes):
 
         self.__model = NN(
-            include_top=True
+            include_top=False
             , weights='imagenet'
             , input_tensor=None
-            , input_shape=None
+            , input_shape=(224, 224, 3)
             , pooling=None
-            , classes=number_of_classes
+            , classes=classes
 
             , backend=keras.backend
             , layers=keras.layers

@@ -50,3 +50,6 @@ class BaseClassifier(object):
 
     def get_model(self):
         return self.__model
+
+    def set_model(self, model):
+        self.__model = model

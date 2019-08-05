@@ -1,9 +1,8 @@
-import keras
-import numpy as np
-from keras.applications.imagenet_utils import preprocess_input
-from keras.applications.imagenet_utils import decode_predictions
-from keras_preprocessing.image import load_img, img_to_array
 import matplotlib.pyplot as plt
+import numpy as np
+from keras.applications.imagenet_utils import decode_predictions
+from keras.applications.imagenet_utils import preprocess_input
+from keras_preprocessing.image import load_img, img_to_array
 
 from models import BaseClassifier
 from nets.ResNet import ResNetBackbone
