@@ -1,6 +1,5 @@
 from keras import Model
-from keras.activations import linear
-from keras.layers import Dense, Flatten, GlobalAveragePooling2D
+from keras.layers import Dense, GlobalAveragePooling2D
 
 from models import BaseClassifier
 from nets.ResNet import ResNetBackbone
@@ -8,11 +7,11 @@ from nets.ResNet import ResNetBackbone
 
 class Classifier(BaseClassifier):
 
-    def __init__(self, backbone, classes):
+    def __init__(self, *args, **kwargs):
         self.__loss = 'binary_crossentropy'
         self.__optimizer = 'adam'
 
-        backbone = ResNetBackbone(backbone, classes)
+        backbone = ResNetBackbone(args.backbone, args.classes)
 
         super(Classifier, self).__init__(backbone.get_model(), self.__loss, self.__optimizer)
 

@@ -1,4 +1,5 @@
 import keras
+from keras import Model
 
 
 class Backbone(object):
@@ -6,10 +7,10 @@ class Backbone(object):
     def __init__(self, NN, classes):
 
         self.__model = NN(
-            include_top=False
+            include_top=True
             , weights='imagenet'
             , input_tensor=None
-            , input_shape=(224, 224, 3)
+            , input_shape=None # (224, 224, 3)
             , pooling=None
             , classes=classes
 

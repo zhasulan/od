@@ -1,9 +1,16 @@
 import time
 
+from keras import Model
 from keras.losses import categorical_crossentropy
+from keras.optimizers import Optimizer
+from mxnet.metric import Loss
 
 
 class BaseClassifier(object):
+
+    __model: Model
+    __loss: Loss
+    __optimizer: Optimizer
 
     def __init__(self, backbone, loss, optimizer):
         # Implement model
@@ -17,10 +24,10 @@ class BaseClassifier(object):
             metrics=['accuracy']
         )
 
-    def fit(self, X, Y, hyperparameters):
+    def fit(self, x, y, hyperparameters):
         initial_time = time.time()
 
-        self.__model.fit(X, Y,
+        self.__model.fit(x, y,
                          batch_size=hyperparameters['batch_size'],
                          epochs=hyperparameters['epochs'],
                          callbacks=hyperparameters['callbacks'],

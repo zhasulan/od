@@ -5,24 +5,33 @@ from nets import Backbone, ResNet
 
 
 def main(args):
-    X = None
-    Y = None
 
-    backbone = Backbone()
+    """
+    TASKS
+    1. All Networks with Imagenet weights
+    2. Some special networks (YOLO) with object detection models and weights
+    3. Google Object Detection images with labels
+    4.
+    x. Train function
+    x. Fine-tuning function
+    x. Transfer learning from Imagenet function
 
-    if args.backbone.find('ResNet') > -1:
-        backbone = ResNet(args.number_of_classes)
 
-    if args.model == 'YOLOv1':
-        from models.YOLOv1 import Classifier as Classifier 
-    elif args.model == 'FasterRCNN':
-        from models.FasterRCNN import Classifier as Classifier
-    else:
-        print('Not a valid model')
-        raise ValueError
-        
-    clf = Classifier(backbone)
-    clf.fit(X, Y)
+    STEPS
+    1. YOLO
+    2. Faster-RCNN
+    3. Retina Net
+    4. Octave Net with models
+    5. MobileNetV2
+    6.
+
+
+
+
+
+    :param args:
+    :return:
+    """
 
 
 def parse_arguments(argv):

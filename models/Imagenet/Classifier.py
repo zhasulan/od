@@ -10,17 +10,17 @@ from nets.ResNet import ResNetBackbone
 
 class Classifier(BaseClassifier):
 
-    def __init__(self, backbone, number_of_classes):
+    def __init__(self, backbone, classes):
         self.__loss = 'binary_crossentropy'
         self.__optimizer = 'adam'
 
-        backbone = ResNetBackbone(backbone, number_of_classes)
+        backbone = ResNetBackbone(backbone, classes)
 
         super(Classifier, self).__init__(backbone.get_model(), self.__loss, self.__optimizer)
 
-    def train(self):
-        # super(Classifier, self).train()
-        None
+    # def train(self):
+    #     # super(Classifier, self).train()
+    #     None
 
 
 if __name__ == '__main__':

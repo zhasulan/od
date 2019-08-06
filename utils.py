@@ -1,4 +1,7 @@
 
+
+
+
 def non_max_suppression(detections, iou_threshold=.5):
     detections = sorted(detections, key=lambda detections: detections[2],
                         reverse=True)
